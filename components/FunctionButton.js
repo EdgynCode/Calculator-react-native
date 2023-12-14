@@ -1,8 +1,13 @@
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const FunctionButton = ({ symbol }) => {
+const FunctionButton = ({ symbol, setDisplay }) => {
   const handlePress = () => {
-    alert(symbol);
+    if (symbol === 'C') {
+      setDisplay('');
+    }
+    else {
+      alert(symbol);
+    }
   };
   return (
     <TouchableOpacity style={styles.button} onPress={handlePress}>
@@ -23,7 +28,7 @@ const styles = StyleSheet.create({
     width: 60,
   },
   text: {
-    fontSize: 20
+    fontSize: 30
   }
 })
 

@@ -1,8 +1,12 @@
-import { View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
+import { useState } from 'react';
 import NumberButton from './components/NumberButton'
 import FunctionButton from './components/FunctionButton';
 
 export default function App() {
+  // State to hold the current input or result
+  const [display, setDisplay] = useState('');
+  
   // Function to render a row of buttons
   const renderButton = (numbers) => {
     return (
@@ -10,7 +14,8 @@ export default function App() {
         {numbers.map((item) => {
           // Check if the text is a number or a text
           const isNumber = !isNaN(parseInt(item));
-          return isNumber ? (<NumberButton key={item} number={item} />) : (<FunctionButton key={item} symbol={item} />);
+          return isNumber ? (<NumberButton key={item} number={item} setDisplay={setDisplay} />)
+          : (<FunctionButton key={item} symbol={item} setDisplay={setDisplay} />);
         })}
       </View>
     );
@@ -19,11 +24,11 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-
+        <Text style={styles.display}>{display}</Text>
       </View>
       <View style={styles.footer}>
-        {renderButton(['C', '()', '%', '/'])}
-        {renderButton([7, 8, 9, 'x'])}
+        {renderButton(['C', '()', '%', '÷'])}
+        {renderButton([7, 8, 9, '×'])}
         {renderButton([4, 5, 6, '-'])}
         {renderButton([1, 2, 3, '+'])}
         {renderButton(['±', 0, '.', '='])}
@@ -56,4 +61,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
+  display: {
+    fontSize: 40,
+    color: '#333',
+    alignSelf: 'flex-end',
+    paddingRight: 10
+  }
 });

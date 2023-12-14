@@ -1,8 +1,8 @@
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const NumberButton = ({ number }) => {
+const NumberButton = ({ number, setDisplay  }) => {
   const handlePress = () => {
-    alert(number)
+    setDisplay((prevDisplay) => prevDisplay + number);
   }
   return (
     <TouchableOpacity style={styles.button} onPress={handlePress}>
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     width: 60,
   },
   text: {
-    fontSize: 20
+    fontSize: 30
   }
 })
 
