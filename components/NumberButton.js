@@ -1,8 +1,8 @@
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const NumberButton = ({ number, setDisplay  }) => {
+const NumberButton = ({ number, setOutput  }) => {
   const handlePress = () => {
-    setDisplay((prevDisplay) => prevDisplay + number);
+    setOutput((prevDisplay) => prevDisplay + number);
   }
   return (
     <TouchableOpacity style={styles.button} onPress={handlePress}>

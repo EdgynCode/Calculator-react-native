@@ -5,7 +5,7 @@ import FunctionButton from './components/FunctionButton';
 
 export default function App() {
   // State to hold the current input or result
-  const [display, setDisplay] = useState('');
+  const [output, setOutput] = useState('');
   
   // Function to render a row of buttons
   const renderButton = (numbers) => {
@@ -14,8 +14,8 @@ export default function App() {
         {numbers.map((item) => {
           // Check if the text is a number or a text
           const isNumber = !isNaN(parseInt(item));
-          return isNumber ? (<NumberButton key={item} number={item} setDisplay={setDisplay} />)
-          : (<FunctionButton key={item} symbol={item} setDisplay={setDisplay} />);
+          return isNumber ? (<NumberButton key={item} number={item} setOutput={setOutput} />)
+          : (<FunctionButton key={item} symbol={item} setOutput={setOutput} output={output} />);
         })}
       </View>
     );
@@ -24,7 +24,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.display}>{display}</Text>
+        <Text style={styles.output}>{output}</Text>
       </View>
       <View style={styles.footer}>
         {renderButton(['C', '()', '%', '÷'])}
@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   footer: {
-    flex: 3,
-    backgroundColor: '#FA9F42',
+    flex: 2.5,
+    backgroundColor: '#3F9F02',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  display: {
+  output: {
     fontSize: 40,
     color: '#333',
     alignSelf: 'flex-end',

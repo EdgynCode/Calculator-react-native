@@ -1,12 +1,28 @@
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const FunctionButton = ({ symbol, setDisplay }) => {
+const FunctionButton = ({ symbol, output, setOutput }) => {
   const handlePress = () => {
-    if (symbol === 'C') {
-      setDisplay('');
-    }
-    else {
-      alert(symbol);
+    switch (symbol) {
+      case 'C':
+        setOutput('');
+        break;
+      case '.':
+        setOutput((prevOutput) => prevOutput + symbol);
+        break;
+      case '()':
+        if (output.startsWith('(') && output.endsWith(')')) {
+          // remove '(' and ')'
+          setOutput(output.slice(1, -1));
+        }
+        else setOutput(`(${output})`);
+        break;
+      case '±':
+        if (!output.startsWith('-')) {
+          setOutput(`-${output}`);
+        } else setOutput(output.slice(1));
+        break;
+      default:
+        alert(symbol);
     }
   };
   return (
